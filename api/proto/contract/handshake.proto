@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "github.com/peer-coding/grpc-comm/proto/pb";
+
+message HandshakeRequest {
+
+};
+
+message HandshakeResponse {
+    
+};
+
+service HandshakeService {
+    rpc OneWayHandshake(HandshakeRequest) returns (HandshakeResponse);
+};
