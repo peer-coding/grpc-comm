@@ -4,6 +4,7 @@ import (
 	"net"
 	"os"
 
+	"github.com/peer-coding/grpc-comm/api/proto/pb"
 	"github.com/peer-coding/grpc-comm/pkg/logger"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
@@ -29,6 +30,10 @@ func New(addr string) Server {
 		lis: lis,
 		srv: server,
 	}
+}
+
+func (s *Server) Register() {
+	pb.RegisterHandshakeServiceServer(s.srv, &Handler{})
 }
 
 func (s *Server) Run() error {

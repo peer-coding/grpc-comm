@@ -14,7 +14,9 @@ func main() {
 
 	go func() {
 		addr := fmt.Sprintf("%s:%s", "localhost", "3001")
+
 		server := server.New(addr)
+		server.Register()
 
 		logger.Log.Info("server is running", "address", addr)
 
