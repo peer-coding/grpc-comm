@@ -4,12 +4,24 @@ package proto;
 
 option go_package = "github.com/peer-coding/grpc-comm/proto/pb";
 
-message HandshakeRequest {
+import "google/protobuf/timestamp.proto";
 
+enum CommunicationType {
+    Unknown = 0;
+    Failure = 1;
+    Success = 2;  
+}; 
+
+message HandshakeRequest {
+    string sender = 1;
+    optional string message = 2;
 };
 
 message HandshakeResponse {
-    
+    string receiver = 1;
+    repeated string messages = 2;
+    CommunicationType status = 3;
+    google.protobuf.Timestamp received_at = 4;
 };
 
 service HandshakeService {
